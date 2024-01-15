@@ -1,0 +1,1 @@
+export const INITIAL_SLIDER_PROGRESS = 288;
