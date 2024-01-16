@@ -2,44 +2,44 @@ import {
   countDownIntervalIDs,
   gamesData,
   initialGameData,
-  quickJoinPlayerWaitingRoom,
+  quickJoinWaitingRoom,
 } from "../state";
 import type { Handler, PlayerCount } from "../types";
-import { alreadyJoined } from "./utils";
+import { alreadyJoinedQuickJoinWaitingRoom } from "./utils";
 
 type Data = { playerCount: PlayerCount; playerName: string };
 
 const quickJoinHandler: Handler = (io, socket) => {
   socket.on("quickJoin", (data: Data) => {
     // 만약 이미 참가 상태라면
-    if (alreadyJoined(socket.id)) {
+    if (alreadyJoinedQuickJoinWaitingRoom(socket.id)) {
       return; // 실행 무시하기
     }
 
     const { playerCount, playerName } = data;
 
-    const playerList = quickJoinPlayerWaitingRoom[playerCount];
+    const playerList = quickJoinWaitingRoom[playerCount];
     playerList.push({ socketID: socket.id, playerName });
 
     // 만약 플레이어 n명이 들어갈 수 있는 방에 n명이 다 찼다면
     if (playerList.length === playerCount) {
       // 방 만들고 모든 플레이어 참가시키기
-      const roomId = crypto.randomUUID();
+      const roomID = crypto.randomUUID();
 
       playerList.forEach((player) => {
-        io.sockets.sockets.get(player.socketID)?.join(roomId);
+        io.sockets.sockets.get(player.socketID)?.join(roomID);
       });
 
-      gamesData[roomId] = structuredClone(initialGameData); // 초기 게임 데이터 복사
-      gamesData[roomId].playerList = playerList.map((player) => ({
+      gamesData[roomID] = structuredClone(initialGameData); // 초기 게임 데이터 복사
+      gamesData[roomID].playerList = playerList.map((player) => ({
         ...player,
         remainSeconds: 1500,
       }));
 
-      quickJoinPlayerWaitingRoom[playerCount] = [];
+      quickJoinWaitingRoom[playerCount] = [];
 
       // 플레이어 수에 따라 보드에 기본 목 놓기
-      const { board } = gamesData[roomId];
+      const { board } = gamesData[roomID];
       if (playerCount === 2) {
         board[3][3] = 0;
         board[4][4] = 1;
@@ -56,14 +56,14 @@ const quickJoinHandler: Handler = (io, socket) => {
         board[4][3] = 3;
       }
 
-      console.log(gamesData[roomId]);
+      console.log(gamesData[roomID]);
 
       // 게임 시작을 알리기
-      io.sockets.in(roomId).emit("startGame", gamesData[roomId]);
+      io.sockets.in(roomID).emit("startGame", gamesData[roomID]);
 
       // 1초 마다 게임 데이터를 전달함
-      countDownIntervalIDs[roomId] = setInterval(() => {
-        io.to(roomId).emit("updateGame", gamesData[roomId]);
+      countDownIntervalIDs[roomID] = setInterval(() => {
+        io.to(roomID).emit("updateGame", gamesData[roomID]);
       }, 1000);
     }
   });
