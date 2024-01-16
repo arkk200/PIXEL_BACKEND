@@ -10,13 +10,11 @@ import { alreadyJoinedQuickJoinWaitingRoom } from "./utils";
 type Data = { playerCount: PlayerCount; playerName: string };
 
 const quickJoinHandler: Handler = (io, socket) => {
-  socket.on("quickJoin", (data: Data) => {
+  socket.on("quickJoin", ({ playerCount, playerName }: Data) => {
     // 만약 이미 참가 상태라면
     if (alreadyJoinedQuickJoinWaitingRoom(socket.id)) {
       return; // 실행 무시하기
     }
-
-    const { playerCount, playerName } = data;
 
     const playerList = quickJoinWaitingRoom[playerCount];
     playerList.push({ socketID: socket.id, playerName });

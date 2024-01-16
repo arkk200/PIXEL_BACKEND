@@ -1,6 +1,6 @@
 import { gamesData } from "../state";
 import { Handler } from "../types";
-import { getRoomIDBySocket } from "../utils";
+import { getRoomIDBySocket, isPlayerTurn } from "../utils";
 
 type Data = { sliderPosition: "TOP" | "SIDE"; progress: number };
 
@@ -9,10 +9,10 @@ const moveSliderHandler: Handler = (io, socket) => {
     const roomID = getRoomIDBySocket(io, socket);
     if (!roomID) return;
 
-    const { topSlider, sideSlider, whoseTurn, playerList } = gamesData[roomID];
-
     // 자기 차례가 아니라면
-    if (socket.id !== playerList[whoseTurn].socketID) return;
+    if (!isPlayerTurn(socket.id, roomID)) return;
+
+    const { topSlider, sideSlider } = gamesData[roomID];
 
     if (sliderPosition === "TOP") {
       topSlider.progress = progress;
