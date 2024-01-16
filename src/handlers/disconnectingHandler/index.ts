@@ -1,4 +1,4 @@
-import { GAME_OVER_DATA_MESSAGE } from "../../constants";
+import { GAME_OVER_MESSAGE } from "../../constants";
 import { alreadyJoinedQuickJoinWaitingRoom } from "../quickJoinHandler/utils";
 import { quickJoinWaitingRoom } from "../state";
 import { Handler } from "../types";
@@ -24,9 +24,7 @@ const disconnectingHandler: Handler = (io, socket) => {
 
     // 참가된 방에 게임이 끝났다고 알리고
     socket.to(roomID).emit("gameOver", {
-      message: GAME_OVER_DATA_MESSAGE.SOMEONE_DISCONNECTED,
-      winner: null,
-      order: null,
+      message: GAME_OVER_MESSAGE.SOMEONE_DISCONNECTED,
     });
 
     // 방 폭파하기

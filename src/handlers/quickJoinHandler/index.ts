@@ -1,6 +1,7 @@
+import { INITIAL_REMAIN_SECONDS } from "../../constants";
 import { gamesData, initialGameData, quickJoinWaitingRoom } from "../state";
 import type { Handler, PlayerCount } from "../types";
-import { countDownRemainTime } from "../utils";
+import { countDownRemainSeconds } from "../utils";
 import { alreadyJoinedQuickJoinWaitingRoom } from "./utils";
 
 type Data = { playerCount: PlayerCount; playerName: string };
@@ -27,7 +28,7 @@ const quickJoinHandler: Handler = (io, socket) => {
       gamesData[roomID] = structuredClone(initialGameData); // 초기 게임 데이터 복사
       gamesData[roomID].playerList = playerList.map((player) => ({
         ...player,
-        remainSeconds: 1500,
+        remainSeconds: INITIAL_REMAIN_SECONDS,
       }));
 
       quickJoinWaitingRoom[playerCount] = [];
@@ -54,7 +55,7 @@ const quickJoinHandler: Handler = (io, socket) => {
       io.sockets.in(roomID).emit("startGame", gamesData[roomID]);
 
       // 1초 마다 게임 데이터를 전달함
-      countDownRemainTime(io, roomID);
+      countDownRemainSeconds(io, roomID);
     }
   });
 };
