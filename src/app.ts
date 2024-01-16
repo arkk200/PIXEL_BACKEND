@@ -4,6 +4,7 @@ import { createServer } from "http";
 import { Server } from "socket.io";
 import {
   disconnectingHandler,
+  leaveQuickJoinHandler,
   moveSliderHandler,
   placeMokHandler,
   quickJoinHandler,
@@ -23,6 +24,7 @@ io.on("connection", (socket) => {
   console.log("a user connected");
 
   quickJoinHandler(io, socket);
+  leaveQuickJoinHandler(io, socket);
   moveSliderHandler(io, socket);
   placeMokHandler(io, socket);
   disconnectingHandler(io, socket);

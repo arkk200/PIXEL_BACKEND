@@ -1,21 +1,11 @@
-import { alreadyJoinedQuickJoinWaitingRoom } from "../quickJoinHandler/utils";
-import { quickJoinWaitingRoom } from "../state";
 import { Handler } from "../types";
-import { getRoomIDBySocket } from "../utils";
+import { getRoomIDBySocket, leaveQuickJoinWaitingRoom } from "../utils";
 
 // 연결이 끊겼는데
 const disconnectingHandler: Handler = (io, socket) => {
   socket.on("disconnecting", () => {
-    // 만약 빠른 참가를 기다리는 중일 때
-    if (alreadyJoinedQuickJoinWaitingRoom(socket.id)) {
-      // 모든 대기 방에서 소켓 아이디 제거
-      for (const playerCount of [2, 3, 4] as const) {
-        quickJoinWaitingRoom[playerCount] = quickJoinWaitingRoom[
-          playerCount
-        ].filter((waitingPlayer) => waitingPlayer.socketID !== socket.id);
-      }
-      return;
-    }
+    // 빠른 참가 대기방에서 기다리고 있었다면 내보내기
+    leaveQuickJoinWaitingRoom(socket.id);
 
     // 이미 게임에 참가 중일 때
     const roomID = getRoomIDBySocket(io, socket);
