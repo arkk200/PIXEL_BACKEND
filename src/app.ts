@@ -2,7 +2,11 @@ import type { Express } from "express";
 import express from "express";
 import { createServer } from "http";
 import { Server } from "socket.io";
-import { disconnectingHandler, quickJoinHandler } from "./handlers";
+import {
+  disconnectingHandler,
+  moveSliderHandler,
+  quickJoinHandler,
+} from "./handlers";
 
 const app: Express = express();
 const server = createServer(app);
@@ -19,6 +23,7 @@ io.on("connection", (socket) => {
 
   quickJoinHandler(io, socket);
   disconnectingHandler(io, socket);
+  moveSliderHandler(io, socket);
 });
 
 server.listen(port, () => {

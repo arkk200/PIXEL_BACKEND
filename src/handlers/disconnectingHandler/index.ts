@@ -9,7 +9,6 @@ const disconnectingHandler: Handler = (io, socket) => {
   socket.on("disconnecting", () => {
     // 만약 빠른 참가를 기다리는 중일 때
     if (alreadyJoinedQuickJoinWaitingRoom(socket.id)) {
-      console.log("remove user from quick join waiting room");
       // 모든 대기 방에서 소켓 아이디 제거
       for (const playerCount of [2, 3, 4] as const) {
         quickJoinWaitingRoom[playerCount] = quickJoinWaitingRoom[

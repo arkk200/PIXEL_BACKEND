@@ -56,8 +56,6 @@ const quickJoinHandler: Handler = (io, socket) => {
         board[4][3] = 3;
       }
 
-      console.log(gamesData[roomID]);
-
       // 게임 시작을 알리기
       io.sockets.in(roomID).emit("startGame", gamesData[roomID]);
 
