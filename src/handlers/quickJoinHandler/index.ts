@@ -1,10 +1,6 @@
-import {
-  countDownIntervalIDs,
-  gamesData,
-  initialGameData,
-  quickJoinWaitingRoom,
-} from "../state";
+import { gamesData, initialGameData, quickJoinWaitingRoom } from "../state";
 import type { Handler, PlayerCount } from "../types";
+import { countDownRemainTime } from "../utils";
 import { alreadyJoinedQuickJoinWaitingRoom } from "./utils";
 
 type Data = { playerCount: PlayerCount; playerName: string };
@@ -58,12 +54,7 @@ const quickJoinHandler: Handler = (io, socket) => {
       io.sockets.in(roomID).emit("startGame", gamesData[roomID]);
 
       // 1초 마다 게임 데이터를 전달함
-      countDownIntervalIDs[roomID] = setInterval(() => {
-        const { playerList, whoseTurn } = gamesData[roomID];
-        playerList[whoseTurn].remainSeconds--;
-
-        io.to(roomID).emit("updateGame", gamesData[roomID]);
-      }, 1000);
+      countDownRemainTime(io, roomID);
     }
   });
 };

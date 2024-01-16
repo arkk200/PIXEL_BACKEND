@@ -1,6 +1,6 @@
 import { UUID } from "crypto";
 import { Server, Socket } from "socket.io";
-import { gamesData } from "./state";
+import { countDownIntervalIDs, gamesData } from "./state";
 
 export const getRoomIDBySocket = (io: Server, socket: Socket) => {
   const rooms = io.sockets.adapter.sids.get(socket.id);
@@ -14,4 +14,15 @@ export const isPlayerTurn = (socketID: Socket["id"], roomID: UUID) => {
   const { whoseTurn, playerList } = gamesData[roomID];
 
   return socketID === playerList[whoseTurn].socketID;
+};
+
+export const countDownRemainTime = (io: Server, roomID: UUID) => {
+  clearInterval(countDownIntervalIDs[roomID]);
+
+  countDownIntervalIDs[roomID] = setInterval(() => {
+    const { playerList, whoseTurn } = gamesData[roomID];
+    playerList[whoseTurn].remainSeconds--;
+
+    io.to(roomID).emit("updateGame", gamesData[roomID]);
+  }, 1000);
 };

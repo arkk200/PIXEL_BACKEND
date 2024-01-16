@@ -1,6 +1,6 @@
-import { countDownIntervalIDs, gamesData } from "../state";
+import { gamesData } from "../state";
 import { GameData, Handler } from "../types";
-import { getRoomIDBySocket, isPlayerTurn } from "../utils";
+import { countDownRemainTime, getRoomIDBySocket, isPlayerTurn } from "../utils";
 
 type SliderIndex = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7;
 
@@ -35,14 +35,7 @@ const placeMokHandler: Handler = (io, socket) => {
     io.to(roomID).emit("updateGame", gamesData[roomID]);
 
     // 초 시계 다시 맞추기
-    clearInterval(countDownIntervalIDs[roomID]);
-
-    countDownIntervalIDs[roomID] = setInterval(() => {
-      const { playerList, whoseTurn } = gamesData[roomID];
-      playerList[whoseTurn].remainSeconds--;
-
-      io.to(roomID).emit("updateGame", gamesData[roomID]);
-    }, 1000);
+    countDownRemainTime(io, roomID);
   });
 };
 
