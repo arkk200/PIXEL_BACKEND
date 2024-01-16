@@ -63,6 +63,9 @@ const quickJoinHandler: Handler = (io, socket) => {
 
       // 1초 마다 게임 데이터를 전달함
       countDownIntervalIDs[roomID] = setInterval(() => {
+        const { playerList, whoseTurn } = gamesData[roomID];
+        playerList[whoseTurn].remainSeconds--;
+
         io.to(roomID).emit("updateGame", gamesData[roomID]);
       }, 1000);
     }
