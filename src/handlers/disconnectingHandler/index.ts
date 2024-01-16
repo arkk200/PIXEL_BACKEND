@@ -1,4 +1,3 @@
-import { GAME_OVER_MESSAGE } from "../../constants";
 import { alreadyJoinedQuickJoinWaitingRoom } from "../quickJoinHandler/utils";
 import { quickJoinWaitingRoom } from "../state";
 import { Handler } from "../types";
@@ -23,9 +22,7 @@ const disconnectingHandler: Handler = (io, socket) => {
     if (!roomID) return;
 
     // 참가된 방에 게임이 끝났다고 알리고
-    socket.to(roomID).emit("gameOver", {
-      message: GAME_OVER_MESSAGE.SOMEONE_DISCONNECTED,
-    });
+    socket.to(roomID).emit("gameOver:disconnecting");
 
     // 방 폭파하기
     io.in(roomID).socketsLeave(roomID);

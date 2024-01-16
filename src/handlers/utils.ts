@@ -1,6 +1,5 @@
 import { UUID } from "crypto";
 import { Server, Socket } from "socket.io";
-import { GAME_OVER_MESSAGE } from "../constants";
 import { countDownIntervalIDs, gamesData } from "./state";
 
 export const getRoomIDBySocket = (io: Server, socket: Socket) => {
@@ -31,8 +30,7 @@ export const countDownRemainSeconds = (io: Server, roomID: UUID) => {
       const { remainSeconds, ...player } = playerList[whoseTurn];
 
       // 졌다는 거 알리기
-      io.to(roomID).emit("gameOver", {
-        message: GAME_OVER_MESSAGE.SOMEONE_LOST,
+      io.to(roomID).emit("gameOver:lose", {
         losePlayerName: player.playerName,
         whoseTurn,
       });
