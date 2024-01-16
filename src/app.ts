@@ -2,8 +2,7 @@ import type { Express } from "express";
 import express from "express";
 import { createServer } from "http";
 import { Server } from "socket.io";
-import disconnectingHandler from "./handlers/disconnectingHandler";
-import quickJoinHandler from "./handlers/quickJoinHandler";
+import { disconnectingHandler, quickJoinHandler } from "./handlers";
 
 const app: Express = express();
 const server = createServer(app);

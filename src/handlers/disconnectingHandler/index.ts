@@ -2,6 +2,7 @@ import { GAME_OVER_REASON } from "../../constants";
 import { alreadyJoinedQuickJoinWaitingRoom } from "../quickJoinHandler/utils";
 import { quickJoinWaitingRoom } from "../state";
 import { Handler } from "../types";
+import { getRoomIDBySocket } from "../utils";
 
 // 연결이 끊겼는데
 const disconnectingHandler: Handler = (io, socket) => {
@@ -19,20 +20,15 @@ const disconnectingHandler: Handler = (io, socket) => {
     }
 
     // 이미 게임에 참가 중일 때
-    const rooms = io.sockets.adapter.sids.get(socket.id);
-
-    // 참가된 방(나를 제외한)에 게임이 끝났다고 알리고
-    rooms?.forEach((roomID) => {
-      if (roomID === socket.id) return;
-
-      socket.to(roomID).emit("gameOver", {
-        reason: GAME_OVER_REASON.SOMEONE_DISCONNECTED,
-        winner: null,
-      });
-
-      // 방 폭파하기
-      io.in(roomID).socketsLeave(roomID);
+    const roomID = getRoomIDBySocket(io, socket);
+    if (!roomID) return;
+    // 참가된 방에 게임이 끝났다고 알리고
+    socket.to(roomID).emit("gameOver", {
+      reason: GAME_OVER_REASON.SOMEONE_DISCONNECTED,
+      winner: null,
     });
+    // 방 폭파하기
+    io.in(roomID).socketsLeave(roomID);
   });
 };
 
