@@ -5,6 +5,7 @@ import { Server } from "socket.io";
 import {
   disconnectingHandler,
   moveSliderHandler,
+  placeMokHandler,
   quickJoinHandler,
 } from "./handlers";
 
@@ -22,8 +23,9 @@ io.on("connection", (socket) => {
   console.log("a user connected");
 
   quickJoinHandler(io, socket);
-  disconnectingHandler(io, socket);
   moveSliderHandler(io, socket);
+  placeMokHandler(io, socket);
+  disconnectingHandler(io, socket);
 });
 
 server.listen(port, () => {
