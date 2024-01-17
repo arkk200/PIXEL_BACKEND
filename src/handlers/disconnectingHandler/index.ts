@@ -1,7 +1,10 @@
 import { waitingRooms } from "../state";
 import { Handler } from "../types";
-import { getRoomIDBySocket, leaveQuickJoinWaitingRoom } from "../utils";
-import isPlayerInWaitingPlayerList from "../utils/isPlayerInWaitingPlayerList";
+import {
+  getRoomIDBySocket,
+  isPlayerInWaitingPlayerList,
+  leaveQuickJoinWaitingRoom,
+} from "../utils";
 
 // 연결이 끊겼는데
 const disconnectingHandler: Handler = (io, socket) => {
