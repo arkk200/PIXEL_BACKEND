@@ -26,6 +26,12 @@ const disconnectingHandler: Handler = (io, socket) => {
         (player) => player.socketID !== socket.id
       );
 
+      // 만약 대기방에 남아있는 인원이 없다면 폭파하기
+      if (roomData.waitingPlayerList.length === 0) {
+        delete waitingRooms[roomID];
+        return;
+      }
+
       socket
         .to(roomID)
         .emit("updateRoom", { playerList: roomData.waitingPlayerList });
