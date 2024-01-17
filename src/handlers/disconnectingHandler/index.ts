@@ -15,6 +15,7 @@ const disconnectingHandler: Handler = (io, socket) => {
     if (!roomID) return { success: false };
 
     const { success } = leaveWaitingRoom(io, socket);
+
     // 성공적으로 대기방에서 떠났다면
     if (success) return;
 

@@ -14,7 +14,6 @@ const leaveWaitingRoom = (io: Server, socket: Socket) => {
     roomData &&
     isPlayerInWaitingPlayerList(roomData.waitingPlayerList, socket.id)
   ) {
-    console.log("who disconnected");
     const { waitingPlayerList } = roomData;
 
     roomData.waitingPlayerList = waitingPlayerList.filter(
@@ -27,9 +26,11 @@ const leaveWaitingRoom = (io: Server, socket: Socket) => {
       return { success: true };
     }
 
-    socket
-      .to(roomID)
-      .emit("updateRoom", { playerList: roomData.waitingPlayerList });
+    socket.leave(roomID);
+
+    io.to(roomID).emit("updateRoom", {
+      playerList: roomData.waitingPlayerList,
+    });
     return { success: true };
   }
   return { success: false };

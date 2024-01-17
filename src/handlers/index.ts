@@ -5,4 +5,5 @@ export { default as leaveQuickJoinWaitingRoomHandler } from "./quickJoin/leaveQu
 export { default as quickJoinHandler } from "./quickJoin/quickJoinHandler";
 export { default as createRoomHandler } from "./waitingRoom/createRoomHandler";
 export { default as joinRoomHandler } from "./waitingRoom/joinRoomHandler";
+export { default as leaveRoomHandler } from "./waitingRoom/leaveRoomHandler";
 export { default as startGameHandler } from "./waitingRoom/startGameHandler";

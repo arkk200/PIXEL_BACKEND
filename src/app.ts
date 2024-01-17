@@ -7,6 +7,7 @@ import {
   disconnectingHandler,
   joinRoomHandler,
   leaveQuickJoinWaitingRoomHandler,
+  leaveRoomHandler,
   moveSliderHandler,
   placeMokHandler,
   quickJoinHandler,
@@ -28,12 +29,13 @@ io.on("connection", (socket) => {
   leaveQuickJoinWaitingRoomHandler(io, socket);
 
   createRoomHandler(io, socket);
+  joinRoomHandler(io, socket);
+  leaveRoomHandler(io, socket);
   startGameHandler(io, socket);
 
   moveSliderHandler(io, socket);
   placeMokHandler(io, socket);
   disconnectingHandler(io, socket);
-  joinRoomHandler(io, socket);
 });
 
 server.listen(port, () => {
