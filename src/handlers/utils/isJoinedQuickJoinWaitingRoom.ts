@@ -1,13 +1,11 @@
 import { quickJoinWaitingRoom } from "../state";
+import isPlayerInWaitingPlayerList from "./isPlayerInWaitingPlayerList";
 
-const isJoinedQuickJoinWaitingRoom = (socketID: string) =>
-  quickJoinWaitingRoom[2].some(
-    (waitingRoom) => waitingRoom.socketID === socketID
-  ) ||
-  quickJoinWaitingRoom[3].some(
-    (waitingRoom) => waitingRoom.socketID === socketID
-  ) ||
-  quickJoinWaitingRoom[4].some(
-    (waitingRoom) => waitingRoom.socketID === socketID
+const isJoinedQuickJoinWaitingRoom = (socketID: string) => {
+  return (
+    isPlayerInWaitingPlayerList(quickJoinWaitingRoom[2], socketID) ||
+    isPlayerInWaitingPlayerList(quickJoinWaitingRoom[3], socketID) ||
+    isPlayerInWaitingPlayerList(quickJoinWaitingRoom[3], socketID)
   );
+};
 export default isJoinedQuickJoinWaitingRoom;
