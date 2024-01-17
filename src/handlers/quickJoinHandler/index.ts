@@ -1,15 +1,14 @@
 import { INITIAL_REMAIN_SECONDS } from "../../constants";
 import { gamesData, initialGameData, quickJoinWaitingRoom } from "../state";
 import type { Handler, PlayerCount } from "../types";
-import { countDownRemainSeconds } from "../utils";
-import { alreadyJoinedQuickJoinWaitingRoom } from "../utils/alreadyJoinedQuickJoinWaitingRoom";
+import { countDownRemainSeconds, isJoinedQuickJoinWaitingRoom } from "../utils";
 
 type Data = { playerCount: PlayerCount; playerName: string };
 
 const quickJoinHandler: Handler = (io, socket) => {
   socket.on("quickJoin", ({ playerCount, playerName }: Data) => {
     // 만약 이미 참가 상태라면
-    if (alreadyJoinedQuickJoinWaitingRoom(socket.id)) {
+    if (isJoinedQuickJoinWaitingRoom(socket.id)) {
       return; // 실행 무시하기
     }
 

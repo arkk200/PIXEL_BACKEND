@@ -13,7 +13,7 @@ export const quickJoinWaitingRoom: Record<PlayerCount, WaitingPlayer[]> = {
   4: [],
 };
 
-export const commonWaitingRoom: Record<PlayerCount, WaitingPlayersRooms> = {
+export const waitingRoom: Record<PlayerCount, WaitingPlayersRooms> = {
   2: {},
   3: {},
   4: {},

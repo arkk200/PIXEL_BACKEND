@@ -1,13 +1,13 @@
-import { commonWaitingRoom } from "../state";
+import { waitingRoom } from "../state";
 import { Handler, PlayerCount } from "../types";
-import { alreadyJoinedQuickJoinWaitingRoom } from "../utils/alreadyJoinedQuickJoinWaitingRoom";
+import { isJoinedQuickJoinWaitingRoom } from "../utils";
 
 type Data = { playerCount: PlayerCount; playerName: string };
 
 const createRoomHandler: Handler = (io, socket) => {
   socket.on("createRoom", ({ playerCount, playerName }: Data) => {
     // 빠른 참가 대기방에 들어가 있는 상태라면
-    if (alreadyJoinedQuickJoinWaitingRoom(socket.id)) {
+    if (isJoinedQuickJoinWaitingRoom(socket.id)) {
       return;
     }
 
@@ -16,7 +16,7 @@ const createRoomHandler: Handler = (io, socket) => {
 
     socket.join(roomID);
 
-    const roomList = commonWaitingRoom[playerCount];
+    const roomList = waitingRoom[playerCount];
 
     roomList[roomID] = [{ socketID: socket.id, playerName }];
 

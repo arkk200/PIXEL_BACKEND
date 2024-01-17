@@ -1,6 +1,6 @@
 import { quickJoinWaitingRoom } from "../state";
 
-export const alreadyJoinedQuickJoinWaitingRoom = (socketID: string) =>
+const isJoinedQuickJoinWaitingRoom = (socketID: string) =>
   quickJoinWaitingRoom[2].some(
     (waitingRoom) => waitingRoom.socketID === socketID
   ) ||
@@ -10,3 +10,4 @@ export const alreadyJoinedQuickJoinWaitingRoom = (socketID: string) =>
   quickJoinWaitingRoom[4].some(
     (waitingRoom) => waitingRoom.socketID === socketID
   );
+export default isJoinedQuickJoinWaitingRoom;
