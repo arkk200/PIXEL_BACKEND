@@ -10,6 +10,7 @@ import {
   moveSliderHandler,
   placeMokHandler,
   quickJoinHandler,
+  startGameHandler,
 } from "./handlers";
 
 const app: Express = express();
@@ -25,7 +26,10 @@ const port = 8080;
 io.on("connection", (socket) => {
   quickJoinHandler(io, socket);
   leaveQuickJoinWaitingRoomHandler(io, socket);
+
   createRoomHandler(io, socket);
+  startGameHandler(io, socket);
+
   moveSliderHandler(io, socket);
   placeMokHandler(io, socket);
   disconnectingHandler(io, socket);

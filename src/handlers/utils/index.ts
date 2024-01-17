@@ -4,3 +4,4 @@ export { default as isJoinedQuickJoinWaitingRoom } from "./isJoinedQuickJoinWait
 export { default as isPlayerInWaitingPlayerList } from "./isPlayerInWaitingPlayerList";
 export { default as isPlayerTurn } from "./isPlayerTurn";
 export { default as leaveQuickJoinWaitingRoom } from "./leaveQuickJoinWaitingRoom";
+export { default as startGame } from "./startGame";
