@@ -6,6 +6,7 @@ import {
   createRoomHandler,
   disconnectingHandler,
   joinRoomHandler,
+  leaveGameHandler,
   leaveQuickJoinWaitingRoomHandler,
   leaveRoomHandler,
   moveSliderHandler,
@@ -35,6 +36,7 @@ io.on("connection", (socket) => {
 
   moveSliderHandler(io, socket);
   placeMokHandler(io, socket);
+  leaveGameHandler(io, socket);
   disconnectingHandler(io, socket);
 });
 

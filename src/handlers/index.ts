@@ -1,4 +1,5 @@
 export { default as disconnectingHandler } from "./disconnectingHandler";
+export { default as leaveGameHandler } from "./game/leaveGameHandler";
 export { default as moveSliderHandler } from "./game/moveSliderHandler";
 export { default as placeMokHandler } from "./game/placeMokHandler";
 export { default as leaveQuickJoinWaitingRoomHandler } from "./quickJoin/leaveQuickJoinWaitingRoomHandler";

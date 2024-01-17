@@ -19,6 +19,8 @@ const quickJoinHandler: Handler = (io, socket) => {
       // 방 만들고 모든 플레이어 참가시키기
       const roomID = crypto.randomUUID();
 
+      quickJoinWaitingRoom[playerCount] = [];
+
       playerList.forEach((player) => {
         io.sockets.sockets.get(player.socketID)?.join(roomID);
       });

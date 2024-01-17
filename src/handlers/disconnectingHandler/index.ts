@@ -1,6 +1,6 @@
 import { Handler } from "../types";
 import {
-  getRoomIDBySocket,
+  leaveGame,
   leaveQuickJoinWaitingRoom,
   leaveWaitingRoom,
 } from "../utils";
@@ -11,20 +11,12 @@ const disconnectingHandler: Handler = (io, socket) => {
     // 빠른 참가 대기방에서 기다리고 있었다면 내보내기
     leaveQuickJoinWaitingRoom(socket.id);
 
-    const roomID = getRoomIDBySocket(io, socket);
-    if (!roomID) return { success: false };
-
     const { success } = leaveWaitingRoom(io, socket);
-
-    // 성공적으로 대기방에서 떠났다면
+    // 대기방에서 떠나기에 성공했다면
     if (success) return;
 
-    // 대기방이 아닌 게임에 참가 중일 때
-    // 참가된 방에 게임이 끝났다고 알리고
-    socket.to(roomID).emit("gameOver:disconnecting");
-
-    // 방 폭파하기
-    io.in(roomID).socketsLeave(roomID);
+    // 하지 않았다면
+    leaveGame(io, socket);
   });
 };
 
