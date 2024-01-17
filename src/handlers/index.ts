@@ -1,8 +1,8 @@
-export { default as createRoomHandler } from "./createRoomHandler";
 export { default as disconnectingHandler } from "./disconnectingHandler";
-export { default as joinRoomHandler } from "./joinRoomHandler";
-export { default as leaveQuickJoinWaitingRoomHandler } from "./leaveQuickJoinWaitingRoomHandler";
-export { default as moveSliderHandler } from "./moveSliderHandler";
-export { default as placeMokHandler } from "./placeMokHandler";
-export { default as quickJoinHandler } from "./quickJoinHandler";
-export { default as startGameHandler } from "./startGameHandler";
+export { default as moveSliderHandler } from "./game/moveSliderHandler";
+export { default as placeMokHandler } from "./game/placeMokHandler";
+export { default as leaveQuickJoinWaitingRoomHandler } from "./quickJoin/leaveQuickJoinWaitingRoomHandler";
+export { default as quickJoinHandler } from "./quickJoin/quickJoinHandler";
+export { default as createRoomHandler } from "./waitingRoom/createRoomHandler";
+export { default as joinRoomHandler } from "./waitingRoom/joinRoomHandler";
+export { default as startGameHandler } from "./waitingRoom/startGameHandler";

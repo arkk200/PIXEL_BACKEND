@@ -1,6 +1,6 @@
-import { gamesData } from "../state";
-import { Handler } from "../types";
-import { getRoomIDBySocket, isPlayerTurn } from "../utils";
+import { gamesData } from "../../state";
+import { Handler } from "../../types";
+import { getRoomIDBySocket, isPlayerTurn } from "../../utils";
 
 type Data = { sliderPosition: "TOP" | "SIDE"; progress: number };
 

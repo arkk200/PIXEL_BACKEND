@@ -1,6 +1,6 @@
-import { waitingRooms } from "../state";
-import { Handler, PlayerCount } from "../types";
-import { getRoomIDBySocket, startGame } from "../utils";
+import { waitingRooms } from "../../state";
+import { Handler, PlayerCount } from "../../types";
+import { getRoomIDBySocket, startGame } from "../../utils";
 
 const startGameHandler: Handler = (io, socket) => {
   socket.on("startGame", () => {

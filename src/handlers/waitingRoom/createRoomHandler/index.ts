@@ -1,6 +1,6 @@
-import { waitingRooms } from "../state";
-import { Handler, PlayerCount } from "../types";
-import { isJoinedQuickJoinWaitingRoom } from "../utils";
+import { waitingRooms } from "../../state";
+import { Handler, PlayerCount } from "../../types";
+import { isJoinedQuickJoinWaitingRoom } from "../../utils";
 
 type Data = { playerCount: PlayerCount; playerName: string };
 

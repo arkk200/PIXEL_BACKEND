@@ -1,6 +1,6 @@
 import { UUID } from "crypto";
-import { waitingRooms } from "../state";
-import { Handler } from "../types";
+import { waitingRooms } from "../../state";
+import { Handler } from "../../types";
 
 type Data = { roomID: UUID; playerName: string };
 

@@ -1,10 +1,10 @@
-import { gamesData } from "../state";
-import { GameData, Handler } from "../types";
+import { gamesData } from "../../state";
+import { GameData, Handler } from "../../types";
 import {
   countDownRemainSeconds,
   getRoomIDBySocket,
   isPlayerTurn,
-} from "../utils";
+} from "../../utils";
 
 type SliderIndex = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7;
 
