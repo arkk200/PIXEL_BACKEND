@@ -1,11 +1,6 @@
 import { UUID } from "crypto";
 import { INITIAL_SLIDER_PROGRESS } from "../constants";
-import {
-  GameData,
-  PlayerCount,
-  WaitingPlayer,
-  WaitingPlayersRooms,
-} from "./types";
+import { GameData, PlayerCount, WaitingPlayer } from "./types";
 
 export const quickJoinWaitingRoom: Record<PlayerCount, WaitingPlayer[]> = {
   2: [],
@@ -13,11 +8,9 @@ export const quickJoinWaitingRoom: Record<PlayerCount, WaitingPlayer[]> = {
   4: [],
 };
 
-export const waitingRoom: Record<PlayerCount, WaitingPlayersRooms> = {
-  2: {},
-  3: {},
-  4: {},
-};
+export const waitingRooms: Partial<
+  Record<UUID, { playerCount: number; waitingPlayerList: WaitingPlayer[] }>
+> = {};
 
 export const gamesData: Record<UUID, GameData> = {};
 export const countDownIntervalIDs: Record<UUID, NodeJS.Timeout> = {};

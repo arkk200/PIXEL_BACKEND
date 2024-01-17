@@ -1,4 +1,3 @@
-import { UUID } from "crypto";
 import { Server, Socket } from "socket.io";
 import { Tuple } from "../types/utility";
 
@@ -16,8 +15,6 @@ export type Player = {
   playerName: string;
   remainSeconds: number;
 };
-
-export type WaitingPlayersRooms = Record<UUID, WaitingPlayer[]>;
 
 export type GameData = {
   topSlider: { progress: number; prevProgress: number };

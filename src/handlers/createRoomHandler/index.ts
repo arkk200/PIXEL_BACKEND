@@ -1,4 +1,4 @@
-import { waitingRoom } from "../state";
+import { waitingRooms } from "../state";
 import { Handler, PlayerCount } from "../types";
 import { isJoinedQuickJoinWaitingRoom } from "../utils";
 
@@ -16,14 +16,15 @@ const createRoomHandler: Handler = (io, socket) => {
 
     socket.join(roomID);
 
-    const roomList = waitingRoom[playerCount];
-
-    roomList[roomID] = [{ socketID: socket.id, playerName }];
+    waitingRooms[roomID] = {
+      playerCount,
+      waitingPlayerList: [{ socketID: socket.id, playerName }],
+    };
 
     socket.emit("createRoom", {
       roomID,
       playerCount,
-      playerList: roomList[roomID],
+      playerList: waitingRooms[roomID]!.waitingPlayerList,
     });
   });
 };
