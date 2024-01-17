@@ -5,6 +5,11 @@ export type Handler = (io: Server, socket: Socket) => void;
 
 export type PlayerCount = 2 | 3 | 4;
 
+export type RoomData = {
+  playerCount: number;
+  waitingPlayerList: WaitingPlayer[];
+};
+
 export type WaitingPlayer = {
   socketID: Socket["id"];
   playerName: string;

@@ -1,6 +1,6 @@
 import { Socket } from "socket.io";
-import { isJoinedQuickJoinWaitingRoom } from ".";
 import { quickJoinWaitingRoom } from "../state";
+import isJoinedQuickJoinWaitingRoom from "./isJoinedQuickJoinWaitingRoom";
 
 const leaveQuickJoinWaitingRoom = (socketID: Socket["id"]) => {
   if (isJoinedQuickJoinWaitingRoom(socketID)) {

@@ -1,5 +1,5 @@
-import { isPlayerInWaitingPlayerList } from ".";
 import { quickJoinWaitingRoom } from "../state";
+import isPlayerInWaitingPlayerList from "./isPlayerInWaitingPlayerList";
 
 const isJoinedQuickJoinWaitingRoom = (socketID: string) => {
   return (
