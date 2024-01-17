@@ -5,6 +5,7 @@ import { Server } from "socket.io";
 import {
   createRoomHandler,
   disconnectingHandler,
+  joinRoomHandler,
   leaveQuickJoinWaitingRoomHandler,
   moveSliderHandler,
   placeMokHandler,
@@ -28,6 +29,7 @@ io.on("connection", (socket) => {
   moveSliderHandler(io, socket);
   placeMokHandler(io, socket);
   disconnectingHandler(io, socket);
+  joinRoomHandler(io, socket);
 });
 
 server.listen(port, () => {

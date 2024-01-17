@@ -14,8 +14,10 @@ const createRoomHandler: Handler = (io, socket) => {
     // 방 만들고
     const roomID = crypto.randomUUID();
 
+    // 방에 참가시키고
     socket.join(roomID);
 
+    // 대기방 데이터 초기화하기
     waitingRooms[roomID] = {
       playerCount,
       waitingPlayerList: [{ socketID: socket.id, playerName }],
