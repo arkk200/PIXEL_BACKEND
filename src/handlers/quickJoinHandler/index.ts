@@ -2,7 +2,7 @@ import { INITIAL_REMAIN_SECONDS } from "../../constants";
 import { gamesData, initialGameData, quickJoinWaitingRoom } from "../state";
 import type { Handler, PlayerCount } from "../types";
 import { countDownRemainSeconds } from "../utils";
-import { alreadyJoinedQuickJoinWaitingRoom } from "./utils";
+import { alreadyJoinedQuickJoinWaitingRoom } from "../utils/alreadyJoinedQuickJoinWaitingRoom";
 
 type Data = { playerCount: PlayerCount; playerName: string };
 

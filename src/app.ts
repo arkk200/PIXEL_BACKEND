@@ -3,6 +3,7 @@ import express from "express";
 import { createServer } from "http";
 import { Server } from "socket.io";
 import {
+  createRoomHandler,
   disconnectingHandler,
   leaveQuickJoinHandler,
   moveSliderHandler,
@@ -21,10 +22,9 @@ const io = new Server(server, {
 const port = 8080;
 
 io.on("connection", (socket) => {
-  console.log("a user connected");
-
   quickJoinHandler(io, socket);
   leaveQuickJoinHandler(io, socket);
+  createRoomHandler(io, socket);
   moveSliderHandler(io, socket);
   placeMokHandler(io, socket);
   disconnectingHandler(io, socket);

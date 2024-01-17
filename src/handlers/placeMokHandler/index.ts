@@ -34,8 +34,6 @@ const placeMokHandler: Handler = (io, socket) => {
     gamesData[roomID].whoseTurn = ((whoseTurn + 1) %
       playerList.length) as GameData["whoseTurn"];
 
-    console.log(gamesData[roomID]);
-
     io.to(roomID).emit("updateGame", gamesData[roomID]);
 
     // 초 시계 다시 맞추기
