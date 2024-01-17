@@ -5,7 +5,7 @@ import { Server } from "socket.io";
 import {
   createRoomHandler,
   disconnectingHandler,
-  leaveQuickJoinHandler,
+  leaveQuickJoinWaitingRoomHandler,
   moveSliderHandler,
   placeMokHandler,
   quickJoinHandler,
@@ -23,7 +23,7 @@ const port = 8080;
 
 io.on("connection", (socket) => {
   quickJoinHandler(io, socket);
-  leaveQuickJoinHandler(io, socket);
+  leaveQuickJoinWaitingRoomHandler(io, socket);
   createRoomHandler(io, socket);
   moveSliderHandler(io, socket);
   placeMokHandler(io, socket);
