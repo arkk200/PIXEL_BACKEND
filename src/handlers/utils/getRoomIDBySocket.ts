@@ -1,4 +1,4 @@
-import { UUID } from "crypto";
+import type { UUID } from "crypto";
 import { Server, Socket } from "socket.io";
 
 const getRoomIDBySocket = (io: Server, socket: Socket) => {

@@ -1,4 +1,4 @@
-import { UUID } from "crypto";
+import type { UUID } from "crypto";
 import { Server } from "socket.io";
 import { countDownIntervalIDs, gamesData } from "../state";
 

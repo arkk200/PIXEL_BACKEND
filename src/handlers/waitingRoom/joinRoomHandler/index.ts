@@ -1,4 +1,4 @@
-import { UUID } from "crypto";
+import type { UUID } from "crypto";
 import { waitingRooms } from "../../state";
 import { Handler } from "../../types";
 

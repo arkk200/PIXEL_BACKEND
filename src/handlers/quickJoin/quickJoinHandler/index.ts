@@ -1,3 +1,4 @@
+import * as crypto from "crypto";
 import { quickJoinWaitingRoom } from "../../state";
 import type { Handler, PlayerCount } from "../../types";
 import { isJoinedQuickJoinWaitingRoom, startGame } from "../../utils";

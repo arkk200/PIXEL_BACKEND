@@ -1,4 +1,4 @@
-import { UUID } from "crypto";
+import type { UUID } from "crypto";
 import { INITIAL_SLIDER_PROGRESS } from "../constants";
 import { GameData, PlayerCount, RoomData, WaitingPlayer } from "./types";
 

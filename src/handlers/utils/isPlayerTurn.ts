@@ -1,4 +1,4 @@
-import { UUID } from "crypto";
+import type { UUID } from "crypto";
 import { Socket } from "socket.io";
 import { gamesData } from "../state";
 
