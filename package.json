@@ -14,7 +14,8 @@
   },
   "scripts": {
     "build": "tsc",
-    "dev": "tsc --build --clean && concurrently \"tsc --watch\" \"node --env-file=.env --watch dist/app.js\""
+    "dev": "tsc --build --clean && concurrently \"tsc --watch\" \"node --env-file=.env --watch dist/app.js\"",
+    "start": "node --env-file=.env dist/app.js"
   },
   "devDependencies": {
     "@types/express": "^4.17.21",

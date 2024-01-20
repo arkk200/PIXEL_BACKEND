@@ -26,7 +26,7 @@ const startGame = (
   if (playerCount === 3) {
     board[3][3] = 0;
     board[3][4] = 1;
-    board[4][3] = 2;
+    board[4][4] = 2;
   }
   if (playerCount === 4) {
     board[3][3] = 0;
