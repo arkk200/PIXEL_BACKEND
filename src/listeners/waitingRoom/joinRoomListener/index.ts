@@ -1,10 +1,10 @@
 import type { UUID } from "crypto";
 import { waitingRooms } from "../../state";
-import { Handler } from "../../types";
+import { Listener } from "../../types";
 
 type Data = { roomID: UUID; playerName: string };
 
-const joinRoomHandler: Handler = (io, socket) => {
+const joinRoomListener: Listener = (io, socket) => {
   socket.on("joinRoom", ({ roomID, playerName }: Data) => {
     const roomData = waitingRooms[roomID];
     // 방이 존재하지 않으면
@@ -36,4 +36,4 @@ const joinRoomHandler: Handler = (io, socket) => {
   });
 };
 
-export default joinRoomHandler;
+export default joinRoomListener;

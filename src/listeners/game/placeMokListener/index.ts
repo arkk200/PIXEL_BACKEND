@@ -1,5 +1,5 @@
 import { gamesData } from "../../state";
-import { GameData, Handler } from "../../types";
+import { GameData, Listener } from "../../types";
 import {
   countDownRemainSeconds,
   getRoomIDBySocket,
@@ -10,7 +10,7 @@ type SliderIndex = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7;
 
 type Data = { topSliderIndex: SliderIndex; sideSliderIndex: SliderIndex };
 
-const placeMokHandler: Handler = (io, socket) => {
+const placeMokListener: Listener = (io, socket) => {
   socket.on("placeMok", ({ topSliderIndex, sideSliderIndex }: Data) => {
     const roomID = getRoomIDBySocket(io, socket);
     if (!roomID) return;
@@ -41,4 +41,4 @@ const placeMokHandler: Handler = (io, socket) => {
   });
 };
 
-export default placeMokHandler;
+export default placeMokListener;

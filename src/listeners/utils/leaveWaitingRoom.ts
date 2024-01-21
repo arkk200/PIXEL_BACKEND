@@ -7,7 +7,7 @@ import isPlayerInWaitingPlayerList from "./isPlayerInWaitingPlayerList";
  * 플레이어를 대기방에서 떠나게 한다.
  * @param io 소켓 서버
  * @param socket 소켓
- * @returns 대기방 떠나기 성공 유무 객체 (disconnectingHandler에서 사용)
+ * @returns 대기방 떠나기 성공 유무 객체 (disconnectingListener에서 사용)
  */
 const leaveWaitingRoom = (io: Server, socket: Socket) => {
   const roomID = getRoomIDBySocket(io, socket);

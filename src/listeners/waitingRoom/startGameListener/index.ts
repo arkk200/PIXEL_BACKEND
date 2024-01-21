@@ -1,8 +1,8 @@
 import { waitingRooms } from "../../state";
-import { Handler, PlayerCount } from "../../types";
+import { Listener, PlayerCount } from "../../types";
 import { getRoomIDBySocket, startGame } from "../../utils";
 
-const startGameHandler: Handler = (io, socket) => {
+const startGameListener: Listener = (io, socket) => {
   socket.on("startGame", () => {
     const roomID = getRoomIDBySocket(io, socket);
     if (!roomID) return;
@@ -24,4 +24,4 @@ const startGameHandler: Handler = (io, socket) => {
   });
 };
 
-export default startGameHandler;
+export default startGameListener;

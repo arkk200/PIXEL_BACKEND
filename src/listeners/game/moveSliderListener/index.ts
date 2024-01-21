@@ -1,10 +1,10 @@
 import { gamesData } from "../../state";
-import { Handler } from "../../types";
+import { Listener } from "../../types";
 import { getRoomIDBySocket, isPlayerTurn } from "../../utils";
 
 type Data = { sliderPosition: "TOP" | "SIDE"; progress: number };
 
-const moveSliderHandler: Handler = (io, socket) => {
+const moveSliderListener: Listener = (io, socket) => {
   socket.on("updateSlider", ({ sliderPosition, progress }: Data) => {
     const roomID = getRoomIDBySocket(io, socket);
     if (!roomID) return;
@@ -28,4 +28,4 @@ const moveSliderHandler: Handler = (io, socket) => {
   });
 };
 
-export default moveSliderHandler;
+export default moveSliderListener;

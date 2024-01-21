@@ -1,11 +1,11 @@
 import * as crypto from "crypto";
 import { quickJoinWaitingRoom } from "../../state";
-import type { Handler, PlayerCount } from "../../types";
+import type { Listener, PlayerCount } from "../../types";
 import { isJoinedQuickJoinWaitingRoom, startGame } from "../../utils";
 
 type Data = { playerCount: PlayerCount; playerName: string };
 
-const quickJoinHandler: Handler = (io, socket) => {
+const quickJoinListener: Listener = (io, socket) => {
   socket.on("quickJoin", ({ playerCount, playerName }: Data) => {
     // 만약 이미 참가 상태라면
     if (isJoinedQuickJoinWaitingRoom(socket.id)) {
@@ -31,4 +31,4 @@ const quickJoinHandler: Handler = (io, socket) => {
   });
 };
 
-export default quickJoinHandler;
+export default quickJoinListener;

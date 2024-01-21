@@ -1,4 +1,4 @@
-import { Handler } from "../types";
+import { Listener } from "../types";
 import {
   leaveGame,
   leaveQuickJoinWaitingRoom,
@@ -6,7 +6,7 @@ import {
 } from "../utils";
 
 // 연결이 끊겼는데
-const disconnectingHandler: Handler = (io, socket) => {
+const disconnectingListener: Listener = (io, socket) => {
   socket.on("disconnecting", () => {
     // 빠른 참가 대기방에서 기다리고 있었다면 내보내기
     leaveQuickJoinWaitingRoom(socket.id);
@@ -20,4 +20,4 @@ const disconnectingHandler: Handler = (io, socket) => {
   });
 };
 
-export default disconnectingHandler;
+export default disconnectingListener;

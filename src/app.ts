@@ -3,17 +3,17 @@ import express from "express";
 import { createServer } from "http";
 import { Server } from "socket.io";
 import {
-  createRoomHandler,
-  disconnectingHandler,
-  joinRoomHandler,
-  leaveGameHandler,
-  leaveQuickJoinWaitingRoomHandler,
-  leaveRoomHandler,
-  moveSliderHandler,
-  placeMokHandler,
-  quickJoinHandler,
-  startGameHandler,
-} from "./handlers";
+  createRoomListener,
+  disconnectingListener,
+  joinRoomListener,
+  leaveGameListener,
+  leaveQuickJoinWaitingRoomListener,
+  leaveRoomListener,
+  moveSliderListener,
+  placeMokListener,
+  quickJoinListener,
+  startGameListener,
+} from "./listeners";
 
 const app: Express = express();
 
@@ -31,18 +31,18 @@ const io = new Server(server, {
 const port = 8080;
 
 io.on("connection", (socket) => {
-  quickJoinHandler(io, socket);
-  leaveQuickJoinWaitingRoomHandler(io, socket);
+  quickJoinListener(io, socket);
+  leaveQuickJoinWaitingRoomListener(io, socket);
 
-  createRoomHandler(io, socket);
-  joinRoomHandler(io, socket);
-  leaveRoomHandler(io, socket);
-  startGameHandler(io, socket);
+  createRoomListener(io, socket);
+  joinRoomListener(io, socket);
+  leaveRoomListener(io, socket);
+  startGameListener(io, socket);
 
-  moveSliderHandler(io, socket);
-  placeMokHandler(io, socket);
-  leaveGameHandler(io, socket);
-  disconnectingHandler(io, socket);
+  moveSliderListener(io, socket);
+  placeMokListener(io, socket);
+  leaveGameListener(io, socket);
+  disconnectingListener(io, socket);
 });
 
 server.listen(port, () => {

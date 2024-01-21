@@ -1,7 +1,7 @@
 import { Server, Socket } from "socket.io";
 import { Tuple } from "../types/utility";
 
-export type Handler = (io: Server, socket: Socket) => void;
+export type Listener = (io: Server, socket: Socket) => void;
 
 export type PlayerCount = 2 | 3 | 4;
 
