@@ -5,6 +5,13 @@ import { gamesData, initialGameData } from "../state";
 import { PlayerCount, WaitingPlayer } from "../types";
 import countDownRemainSeconds from "./countDownRemainSeconds";
 
+/**
+ * 게임을 시작한다.
+ * @param io 소켓 서버
+ * @param roomID 플레이어가 들어가있는 방 아이디
+ * @param playerCount 플레이하는 플레이어 수
+ * @param playerList 플레이하는 플레이어 리스트
+ */
 const startGame = (
   io: Server,
   roomID: UUID,

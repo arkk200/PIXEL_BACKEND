@@ -7,10 +7,10 @@ const startGameHandler: Handler = (io, socket) => {
     const roomID = getRoomIDBySocket(io, socket);
     if (!roomID) return;
 
-    // 만약 게임을 시작한게 호스트가 아니라면
     const roomData = waitingRooms[roomID];
     if (!roomData) return;
 
+    // 만약 게임을 시작한게 호스트가 아니라면
     if (roomData.waitingPlayerList[0].socketID !== socket.id) return;
 
     // 그렇지 않다면 게임 데이터 세팅하기
