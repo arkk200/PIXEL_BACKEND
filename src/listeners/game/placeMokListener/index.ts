@@ -60,6 +60,7 @@ const placeMokListener: Listener = (io, socket) => {
           whoseTurn,
         });
         clearInterval(countDownIntervalIDs[roomID]);
+        io.in(roomID).socketsLeave(roomID);
         return;
       }
 
@@ -76,6 +77,7 @@ const placeMokListener: Listener = (io, socket) => {
           winPlayerList,
         });
         clearInterval(countDownIntervalIDs[roomID]);
+        io.in(roomID).socketsLeave(roomID);
         return;
       }
 

@@ -34,4 +34,5 @@ export const initialGameData: Readonly<GameData> = {
   ],
   playerList: [],
   whoseTurn: 0,
+  isGameEnd: false,
 };
