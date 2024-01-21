@@ -18,6 +18,7 @@ const countDownRemainSeconds = (io: Server, roomID: UUID) => {
 
     // 만약 현재 플레이어의 남은 시간이 0초라면
     if (playerList[whoseTurn].remainSeconds === 0) {
+      clearInterval(countDownIntervalIDs[roomID]);
       const { remainSeconds, ...player } = playerList[whoseTurn];
 
       // 졌다는 거 알리기
